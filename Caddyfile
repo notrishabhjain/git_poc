@@ -1,0 +1,24 @@
+# Replace yourdomain.com with your actual domain or DuckDNS subdomain
+# For local dev, use localhost
+
+:80 {
+    # API
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
+
+    # Dashboard
+    handle {
+        reverse_proxy web-dashboard:3000
+    }
+}
+
+# Uncomment for production with HTTPS:
+# yourdomain.duckdns.org {
+#     handle /api/* {
+#         reverse_proxy backend:8000
+#     }
+#     handle {
+#         reverse_proxy web-dashboard:3000
+#     }
+# }
