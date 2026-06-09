@@ -1,3 +1,4 @@
+import json
 import uuid
 from datetime import datetime, timezone
 
@@ -53,7 +54,7 @@ async def create_manual_task(db: AsyncSession, data: dict) -> dict:
         urgency=data.get("urgency", "medium"),
         importance=data.get("importance", "medium"),
         due_date=data.get("due_date"),
-        tags=data.get("tags"),
+        tags_json=json.dumps(data["tags"]) if data.get("tags") else None,
     )
     db.add(task)
     await db.commit()
@@ -74,7 +75,7 @@ def _task_to_dict(t: Task) -> dict:
         "due_date": t.due_date.isoformat() if t.due_date else None,
         "due_date_flexible": t.due_date_flexible,
         "context_summary": t.context_summary,
-        "tags": t.tags,
+        "tags": json.loads(t.tags_json) if t.tags_json else None,
         "source_message_id": str(t.source_message_id) if t.source_message_id else None,
         "calendar_event_id": str(t.calendar_event_id) if t.calendar_event_id else None,
         "created_at": t.created_at.isoformat(),

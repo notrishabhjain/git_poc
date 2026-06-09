@@ -1,4 +1,5 @@
 """Core AI pipeline: prefilter → classify → extract → act."""
+import json
 import logging
 import uuid
 from datetime import datetime
@@ -141,7 +142,7 @@ async def _create_task(
         due_date=due_date,
         due_date_flexible=entities.get("due_date_flexible", True) if entities else True,
         context_summary=classification.reasoning,
-        tags=entities.get("tags") if entities else None,
+        tags_json=json.dumps(entities.get("tags")) if entities and entities.get("tags") else None,
     )
     db.add(task)
     await db.flush()  # get task.id without committing

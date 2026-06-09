@@ -1,3 +1,4 @@
+import json
 import logging
 from datetime import datetime, timezone
 
@@ -70,7 +71,7 @@ async def ingest_message(db: AsyncSession, payload: dict) -> tuple[Message | Non
         push_name=push_name,
         timestamp=timestamp,
         ai_processed=False,
-        raw_payload_json={k: v for k, v in payload.items() if k != "body"},
+        raw_payload_json=json.dumps({k: v for k, v in payload.items() if k != "body"}),
     )
     db.add(message)
     await db.flush()
