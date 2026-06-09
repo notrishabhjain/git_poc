@@ -1,0 +1,10 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "web-dashboard/Dockerfile"
+
+[deploy]
+startCommand = "npm start"
+
+[[services]]
+name = "web-dashboard"
+internalPort = 3000

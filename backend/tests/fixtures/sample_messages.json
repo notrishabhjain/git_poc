@@ -1,0 +1,50 @@
+[
+  {
+    "scenario": "meeting_request_explicit",
+    "body": "Hey, can we meet tomorrow at 3pm to discuss the Q3 budget?",
+    "expected_intent": "meeting_request",
+    "expected_category": "work",
+    "sender_name": "John",
+    "is_group": false
+  },
+  {
+    "scenario": "reminder_implicit",
+    "body": "Don't forget to pick up the prescription from the pharmacy at 6pm",
+    "expected_intent": "reminder",
+    "expected_category": "personal",
+    "sender_name": "Mom",
+    "is_group": false
+  },
+  {
+    "scenario": "fyi_no_action",
+    "body": "Just FYI, the office will be closed next Monday for the holiday",
+    "expected_intent": "fyi_no_action",
+    "expected_category": "work",
+    "sender_name": "HR Team",
+    "is_group": true
+  },
+  {
+    "scenario": "deadline",
+    "body": "Please submit the project report by Friday 5pm",
+    "expected_intent": "deadline",
+    "expected_category": "work",
+    "sender_name": "Manager",
+    "is_group": false
+  },
+  {
+    "scenario": "social_skip",
+    "body": "👍",
+    "expected_intent": "social",
+    "expected_category": "personal",
+    "sender_name": "Friend",
+    "is_group": false
+  },
+  {
+    "scenario": "follow_up",
+    "body": "Hey, just checking in on the proposal I sent last week. Any update?",
+    "expected_intent": "follow_up",
+    "expected_category": "work",
+    "sender_name": "Client",
+    "is_group": false
+  }
+]
